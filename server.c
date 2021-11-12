@@ -13,7 +13,7 @@ pthread_t tid;
 pthread_t writerthreads[100];
 pthread_t readerthreads[100];
 int countReaders = 0;
-
+int count_file = 0;
 struct files  
 {  
 	int id;
@@ -170,7 +170,6 @@ int main(int arg,char* argv[])
 		size_t nmatch = 4; 
 
 		// struct data *requestData = (struct data*) request; // Get The Request Message Struct
-		int count_file = 0;
 		char response[4096],regex_func[4096];
 		int pattern;
 		bzero(regex_func,4096);				// erase previous regex
@@ -202,6 +201,7 @@ int main(int arg,char* argv[])
 		
   				int index = checkIfExistFile(server_files, filename);
 		
+				printf(" Get index  is %d",index);
 
 				//Read File if post or get and exists
 				if(index != -1){				// if file is exist
@@ -225,7 +225,7 @@ int main(int arg,char* argv[])
 			else{
 				// Check if file exists or not
 				int index = checkIfExistFile(server_files, filename);
-				printf(" hte indec is %d",index);
+				printf(" Post index  is %d",index);
 				if(index != -1){
 					// Open file from client and put it into server
 					// send to client to get the file 
